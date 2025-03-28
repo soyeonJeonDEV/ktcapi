@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}KT Cloud Dashboard{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">
+        <span style="color: white;">kt</span><span style="color: #ff2b2b;"> cloud</span>
+      </a>
+
+      {% if session.get('username') %}
+      <div class="d-none d-lg-flex align-items-center ms-auto gap-3 user-info">
+        👤 <span class="username">{{ session.username }}</span>
+        ⏳ <span id="timer" class="timer">-</span>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">로그아웃</a>
+      </div>
+      <div class="dropdown text-end d-lg-none ms-auto">
+        <a href="#" class="d-block text-white dropdown-toggle" data-bs-toggle="dropdown">
+          {{ session.username }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><span class="dropdown-item-text text-muted">⏳ <span id="timer-mobile">-</span></span></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="{{ url_for('logout') }}">로그아웃</a></li>
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% block script %}{% endblock %}
+</body>
+</html>

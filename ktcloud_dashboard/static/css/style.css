@@ -1,0 +1,89 @@
+/* 기본 레이아웃 */
+body {
+    background-color: #f5f7fa;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #212529;
+  }
+  
+  /* 상단 네비게이션 */
+  .navbar {
+    background-color: #000;
+  }
+  
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: #ff2b2b !important;
+  }
+  
+  /* 사용자 드롭다운 */
+  .user-info {
+    color: white;
+  }
+  
+  .dropdown-menu {
+    font-size: 0.95rem;
+  }
+  
+  .dropdown-item-text {
+    color: #6c757d;
+  }
+  
+  /* 카드 공통 */
+  .card {
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+  
+  /* 로그인 카드 */
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff2b2b;
+  }
+  
+  .card-subtitle {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .form-label {
+    font-weight: 500;
+  }
+  
+  /* 버튼 스타일 */
+  .btn-primary {
+    background-color: #ff2b2b;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #d92222;
+  }
+  
+  .btn-outline-light:hover {
+    background-color: #ffffff11;
+  }
+  
+  /* 반응형 처리 */
+  @media (max-width: 768px) {
+    .navbar-brand {
+      font-size: 1.2rem;
+    }
+    .card-title {
+      font-size: 1.3rem;
+    }
+    .card {
+      padding: 1rem !important;
+    }
+  }
+  
+  /* 타이머 텍스트 */
+  #timer {
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  

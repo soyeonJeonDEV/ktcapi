@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}KT Cloud 대시보드{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card p-4 shadow-sm">
+      <div class="card-body">
+        <h3 class="card-title mb-3">환영합니다, <span class="text-primary">{{ username }}</span> 님!</h3>
+        <p class="text-secondary mb-4">KT Cloud Open API를 통해 클라우드 리소스를 조회할 수 있습니다.</p>
+        <p class="text-muted">⏳ 세션 남은 시간은 우측 상단에서 실시간으로 확인할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  let remaining = {{ remaining }};
+
+  function formatTime(seconds) {
+    const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+    const sec = String(seconds % 60).padStart(2, '0');
+    return `${min}분 ${sec}초`;
+  }
+
+  function updateTimer() {
+    const t1 = document.getElementById('timer');
+    const t2 = document.getElementById('timer-mobile');
+
+    if (remaining > 0) {
+      const timeStr = formatTime(remaining);
+      if (t1) t1.textContent = timeStr;
+      if (t2) t2.textContent = timeStr;
+      remaining--;
+    } else {
+      if (t1) t1.textContent = "만료됨";
+      if (t2) t2.textContent = "만료됨";
+      clearInterval(interval);
+      alert("세션이 만료되어 자동 로그아웃됩니다.");
+      window.location.href = "{{ url_for('logout') }}";
+    }
+  }
+
+  updateTimer();
+  const interval = setInterval(updateTimer, 1000);
+</script> 
+{% endblock %}
